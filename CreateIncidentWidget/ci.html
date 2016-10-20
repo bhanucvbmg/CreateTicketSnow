@@ -1,0 +1,77 @@
+////HTML
+<div  class="panel b" ng-init="createIncident()">
+    <!-- header -->
+    <div class="panel-heading bg-primary">
+      <h4 class="panel-title">${Create Incident}</h4>
+  </div>  
+  
+    <!-- body -->
+    <div class="panel-body" >
+       <form ng-submit="$event.preventDefault()" class="form-horizontal">
+      
+      <!-- Category -->   
+      <div class="form-group">
+        <label class="col-sm-3 control-label">${Category}</label>
+        <div class="col-sm-6">
+          <select ng-model="c.category" name="category" placeholder="${Category}" class="form-control">
+            <option value="">- Please Choose -</option>
+            <option ng-repeat="cat in data.ci.act"value="{{cat}}">{{data.ci.dis[$index]}}
+            </option>
+            </select>
+        </div>
+      </div>
+
+      <!-- Impact -->
+     <div class="form-group">
+        <label class="col-sm-3 control-label">${Impact}</label>
+        <div class="col-sm-6">
+         <select ng-model="c.impact" name="impact" placeholder="${impact}" class="form-control">
+            <option value="">- Please Choose -</option>
+            <option ng-repeat="cat in data.impact.act"value="{{cat}}">{{data.impact.dis[$index]}}
+            </option>
+            </select>
+        </div>
+      </div>
+
+      <!-- Urgency-->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">${Urgency}</label>
+        <div class="col-sm-6">
+          <select ng-model="c.urgency" name="urgency" placeholder="${Urgency}" class="form-control">
+          <option value="">- Please Choose -</option>
+          <option ng-repeat="cat in data.urgency.act"value="{{cat}}">{{data.urgency.dis[$index]}}</option>
+          </select>
+          </div>
+      </div>
+  
+      <!-- contct type-->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">${Contact Preference}</label>
+        <div class="col-sm-6">
+          <select ng-model="c.contact_type" name="contact type" placeholder="${contact preference}" class="form-control">
+            <option value="">- Please Choose -</option>
+            <option ng-repeat="cat in data.contactpref.act"value="{{cat}}">{{data.contactpref.dis[$index]}}
+            </option>
+            </select>
+        </div>
+      </div>
+      <!-- short description-->
+      <div class="form-group">
+        <label class="col-sm-3 control-label">${Short Description}</label>
+        <div class="col-sm-6">
+          <textarea ng-model="c.short_description" name="code" placeholder="${short description}" class="form-control"></textarea>
+        </div>
+      </div>
+    
+      <!-- button-->
+      <div>
+        <button type="submit" 
+                ng-disabled="data.status == 'success' || c.showSubmit()"
+                ng-click="c.action()"
+                class="btn btn-primary">${Submit}</button>
+      </div>
+    </form>
+    
+    </div>  
+  
+</div>
