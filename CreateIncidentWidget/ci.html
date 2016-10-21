@@ -62,6 +62,23 @@
           <textarea ng-model="c.short_description" name="code" placeholder="${short description}" class="form-control"></textarea>
         </div>
       </div>
+         
+      <div class="att-group">
+            File: <input type="file" id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)"/>
+            <br/>  <div ng-show="files.length">
+              <div ng-repeat="file in files.slice(0)">
+                  <span>{{file.webkitRelativePath || file.name}}</span>
+                  (<span ng-switch="file.size > 1024*1024">
+                      <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                      <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                  </span>)<span class="glyphicon glyphicon-remove-circle" id="removeicon" ng-click="removeFiles(file)"></span>
+               		 <div ng-if="data.upLoadAtt" ng-init="uploadFiles()">
+								</div>
+              </div>
+          </div>
+      </div>
+
+
     
       <!-- button-->
       <div>
