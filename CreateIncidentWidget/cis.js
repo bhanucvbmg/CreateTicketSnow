@@ -4,7 +4,7 @@
 	data.is_logged_in = gs.getSession().isLoggedIn();
 	data.sys_id = '-1';
 		  //var recordType='incident',choiceField='category';
-	 
+		//gs.addInfoMessage(gs.getUserID())
 		data.ci={};
 		data.impact={};
 		data.urgency={};
@@ -47,12 +47,16 @@
 		gr.setValue('urgency', input.urgency);
 		gr.setValue('contact_type', input.contact_type);
 		gr.setValue('short_description', input.short_description);
+		gr.caller_id = gs.getUserID();
 		
 		var sys_id = gr.insert();
 		if (!gs.nil(sys_id)) {
 			data.sys_id = sys_id;
 			data.status = "success";
-			data.message = gs.addInfoMessage("Your Incident Has been Submitted.");
+			data.upLoadAtt = true;
+      data.table ='incident';
+      data.rec_sysid=gr.sys_id.toString();
+			data.message = gs.addInfoMessage("Incident "+gr.getValue('number')+" Has been Submitted.");
 		} else {
 			data.status = "error";
 			data.message = gs.addInfoMessage("Incident Submission Failed.")
